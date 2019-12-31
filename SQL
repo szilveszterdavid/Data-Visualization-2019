@@ -1,0 +1,6 @@
+select ros.STATIONNAME,round(avg(r.sd))
+from ro r join rostation ros
+on r.Usaf=ros.USAF_Wband_id
+where datum like '201812%'
+group by ros.STATIONNAME
+order by round(avg(r.sd)) desc;
