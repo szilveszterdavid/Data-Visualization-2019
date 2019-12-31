@@ -1,0 +1,66 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+
+namespace Atalakito1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] lines = System.IO.File.ReadAllLines(@"E:\2-ev\Adatbazisok\Adatvizualizacio\Atalakit\6247548043235dat.txt");
+
+            StringBuilder builder = new StringBuilder();
+            foreach (string line in lines)
+            {
+   
+                var temp = Regex.Split(line, @"\s{1,}");
+                for (int i = 0; i <temp.Length; i++)
+                {
+                    if (!temp[i].Equals(' '))
+                    {
+                        //Console.WriteLine("Element[{0}] = {1}", i, temp[i]);
+                        //builder.AppendLine(string.Join(",",temp[i]));
+                        switch (temp[i])
+                        {
+                            case "*":
+                                temp[i] = "";
+                                break;
+                            case "**":
+                                temp[i] = "";
+                                break;
+                            case "***":
+                                temp[i] = "";
+                                break;
+                            case "****":
+                                temp[i] = "";
+                                break;
+                            case "*****":
+                                temp[i] = "";
+                                break;
+                            case "******":
+                                temp[i] = "";
+                                break;
+
+                        }
+                        if (!temp[i].Equals(temp.Length - 1))
+                        {
+                            builder.Append(string.Format("{0},", temp[i]));
+                        }
+                        else
+                        {
+                            builder.Append(string.Format("{0}", temp[i]));
+                        }
+                    }
+                }
+                    builder.AppendLine();
+           
+            }
+
+            System.IO.File.WriteAllText(@"E:\2-ev\Adatbazisok\Adatvizualizacio\Csillagnelkul\HU62.csv", builder.ToString());
+        }
+    }
+}
